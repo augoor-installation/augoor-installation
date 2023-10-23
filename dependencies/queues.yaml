@@ -1,0 +1,86 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: repo # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.repo # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: repo-status # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.repo-status # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: spider # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.spider # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: tag-tree # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.tag-tree # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: context # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.context # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: multitaskv6 # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.multitask_v6 # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Binding
+metadata:
+  name: binding
+spec:
+  vhost: augoor-vhost # default to '/' if not provided
+  source: amq.headers # an existing exchange
+  destination: sn.multitask_v6 # an existing queue or exchange
+  destinationType: queue # can be 'queue' or 'exchange'
+  routingKey: "sn.multitask_v6"
+  arguments:
+    model_id: "multitask_v6"
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster # rabbitmqCluster must exist in the same namespace as this resource

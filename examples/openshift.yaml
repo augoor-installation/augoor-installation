@@ -1,0 +1,57 @@
+
+global:
+  cloudProvider: openshift
+  environment: prod
+  containerRegistry: example.azurecr.io
+  containerRepository: serenity
+  queueServer: rabbitmq-cluster.augoor-rabbit-mq.svc
+  queueUser: plain username
+  queuePass: plain password
+  queuePort: 5671
+  queueVhost: augoor-vhost
+  queueTLS: TRUE
+  queueTLSstring: "1"
+  vaultEnabled: false
+  volumeServer: examplestorage.privatelink.file.core.windows.net
+  volumeRootPath: /augoorstorage/akstest
+  postgresqlServer: SomePostgresqlServer
+  postgresqlPort: 5432
+  sonarUrl: "http://sonarqube:9000"
+  sonarUser: admin
+  sonarPassword: PasswordForSonarUser
+  cipherPassphrase: Some passphrase for encrypt messages between Auth and CodeProcessor
+  appurl: Application url without the procotol. i.e. auggor.my-domain.com
+  customDomainProvider: ""
+  JWT_PUBLIC_KEY: Plain output from `openssl ec -in /tmp/my.key.pem -pubout`
+  JWT_PRIVATE_KEY: Plain output from `openssl pkcs8 -topk8 -nocrypt -in /tmp/my.key.pem`
+
+codeprocessor:
+  foreFrontServer: https://somemodel-augoor.forefront.link
+  foreFrontApiKey: API Key
+
+ui:
+  mixPanelApiKey: T1
+  gtmid: T2
+  useServiceAccount: true
+
+auth:
+  flywayUser: PostgreSQL DB admin user
+  flywayPassword: Password for Postgresql DB admin
+  postgresqlPassword: Password for Postgresql Auth user
+  reposProviders:
+    - name: github
+      url: ""
+      admins: user1,user2
+      clientId: Client ID from OAuth Apps
+      clientSecret: Secret from OAuth Apps
+      userAttr: login
+      clientName: GitHub
+      scope: read:user,repo
+    - name: azure
+      url: https://dev.azure.com/augoor
+      admins: username1,username2
+      clientId: APP ID from Authorizations
+      clientSecret: Clien Secret from Authorizations
+      userAttr: login
+      clientName: Azure repos
+      scope: vso.code,vso.project

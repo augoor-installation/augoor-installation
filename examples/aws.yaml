@@ -1,0 +1,58 @@
+global:
+  cloudProvider: aws
+  nodeGroupCPU: Required node group for Non-GPU pods
+  nodeGroupGPU: Required node group for GPU pods
+  environment: prod
+  containerRegistry: example.dkr.ecr.zone-id.amazonaws.com
+  containerRepository: serenity
+  certificateArn: A valid AWS arn certificate for the ingress alb
+  queueServer: rabbitmq-cluster.rabbitmq-system.svc
+  queueUser: plain user
+  queuePass: plain password
+  queuePort: 5671
+  queueTLS: TRUE
+  queueTLSstring: "1"
+  queueVhost: augoor-vhost
+  vaultEnabled: false
+  volumeServer: example.efs.zone-id.amazonaws.com
+  volumeRootPath: /augoor
+  postgresqlServer: example.zone-id.rds.amazonaws.com
+  postgresqlPort: 5432
+  sonarUrl: "http://sonarqube:9000"
+  sonarUser: admin
+  sonarPassword: Sonar Admin password to be set after first installation
+  cipherPassphrase: Some passphrase for encrypt messages between Auth and CodeProcessor
+  appurl: Application url without the procotol. i.e. auggor.my-domain.com
+  customDomainProvider: ""
+  JWT_PUBLIC_KEY: Plain output from `openssl ec -in /tmp/my.key.pem -pubout`
+  JWT_PRIVATE_KEY: Plain output from `openssl pkcs8 -topk8 -nocrypt -in /tmp/my.key.pem`
+
+sharedIngress:
+  securityGroups: List of security groups for Ingress. [sg-#####]
+  subnets: List of subnets for Ingres. [subnet-####,subnet-######]
+
+ui:
+  mixPanelApiKey: T1
+  gtmid: T2
+
+auth:
+  flywayUser: PostgreSQL DB admin user
+  flywayPassword: Password for Postgresql DB admin
+  postgresqlPassword: Password for Postgresql Auth user
+  reposProviders:
+    - name: github
+      url: ""
+      admins: user1,user2
+      clientId: Client ID from OAuth Apps
+      clientSecret: Secret from OAuth Apps
+      userAttr: login
+      clientName: GitHub
+      scope: read:user,repo
+    - name: azure
+      url: https://dev.azure.com/augoor
+      admins: username1,username2
+      clientId: APP ID from Authorizations
+      clientSecret: Clien Secret from Authorizations
+      userAttr: login
+      clientName: Azure repos
+      scope: vso.code,vso.project
