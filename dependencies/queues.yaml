@@ -61,9 +61,9 @@ spec:
 apiVersion: rabbitmq.com/v1beta1
 kind: Queue
 metadata:
-  name: multitaskv6 # name of this custom resource; does not have to the same as the actual queue name
+  name: llama27b # name of this custom resource; does not have to the same as the actual queue name
 spec:
-  name: sn.multitask_v6 # name of the queue
+  name: sn.llama2_7b # name of the queue
   autoDelete: false
   durable: true
   rabbitmqClusterReference:
@@ -73,14 +73,26 @@ spec:
 apiVersion: rabbitmq.com/v1beta1
 kind: Binding
 metadata:
-  name: binding
+  name: bindingllama27b
 spec:
   vhost: augoor-vhost # default to '/' if not provided
   source: amq.headers # an existing exchange
-  destination: sn.multitask_v6 # an existing queue or exchange
+  destination: sn.llama2_7b # an existing queue or exchange
   destinationType: queue # can be 'queue' or 'exchange'
-  routingKey: "sn.multitask_v6"
+  routingKey: "sn.llama2_7b"
   arguments:
-    model_id: "multitask_v6"
+    model_id: "llama2_7b"
   rabbitmqClusterReference:
     name: rabbitmq-cluster # rabbitmqCluster must exist in the same namespace as this resource
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: context-assistant # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.context.assistant # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
