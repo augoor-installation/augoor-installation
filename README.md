@@ -21,6 +21,7 @@ The installation does have 3 main stages:
   - Infrastructure Prerequisites
   - RabbitMQ installation
   - Service deployment
+  - internet access to download models from models-sftp.augoor.com
 
 ## Infrastructure Prerequisites
 
@@ -162,6 +163,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `global.queuePort`             | Port to connect to RabbitMQ service                                                       | `5671`                    |
 | `global.queueServer`           | Deployed RabbitMQ service. eg: rabbitmq-cluster.rabbit-namespace.svc                      | `""`                      |
 | `global.queueTLS`              | Whether to use TLS to encrypt RabbitMQ or not                                             | `true`                    |
+| `global.queueTLSstring`        | Whether to use TLS to encrypt RabbitMQ or not using as values `"0"` or `"1"`              | `"1"`                     |
 | `global.queueUser`             | User for RabbitMQ. Generated in the Configuration Steps                                   | `""`                      |
 | `global.sonarUrl`              | URL used for SonarQube connection                                                         | `"http://sonarqube:9000"` |
 | `global.sonarPassword`         | Password for SonarQube Admin user. Sonar Default will be changed during helm install      | `""`                      |
@@ -169,6 +171,10 @@ The command removes all the Kubernetes components associated with the chart and 
 | `global.vaultEnabled`          | Enable Vault                                                                              | `false`                   |
 | `global.volumeRootPath`        | NFS Root Path for mounting the directories in Augoor container                            | `/augoor`                 |
 | `global.volumeServer`          | NFS server to connect to                                                                  | `""`                      |
+| `global.ScmDomainProvider`     | Pair values separated by `:`, where the first value is the repo provider and the second one is the hostname of the repo provider. It can be more than one pair defined, just separate it with a comma `,`. Repo Provider values supported: `"github"`,  `"gitlab"`,  `"azure"`,  `"bitbucket"`. Some examples: `"github:github.com"`, `"github:my-internal-repos.com"`, `"bitbucket:bitbucket.org,gitlab:gitlab.com"`| `""`                      |
+| `global.sftpServer`            | SFTP server url to connect to (needed for download model binaries for inference)          | `""`                      |
+| `global.sftpUser`              | SFTP user for connect to server                                                           | `""`                      |
+| `global.sshKeyPath`            | Path of SSH key needed for connect to SFTP server                                         | `""`                      |
 
 ### SharedIngres parameters (Only for AWS)
 
@@ -227,6 +233,15 @@ Optional Parameters, if set, will override the corresponding global.value:
 | `context.volumeServer`      | NFS server to connect to                                        | ``     |
 | `context.volumeRootPath`    | NFS Root Path for mounting the directories in context container | ``     |
 
+### Context-assistant parameters
+
+Optional Parameters, if set, will override the corresponding global.value:
+
+| Name                        | Description                                                     | Value  |
+|-----------------------------|-----------------------------------------------------------------|--------|
+| `contextassistant.enabled`  | Set to False for not deploying Context service                  | `True` |
+| `contextassistant.openAIKey`| Open AI API KEY is needed for the context-assistant to work     | `""`   |
+
 ### Forefront Proxy parameters
 
 Optional Parameters, if set, will override the corresponding global.value:
@@ -251,30 +266,28 @@ Optional Parameters, if set, will override the corresponding global.value:
 
 Optional Parameters, if set, will override the corresponding global.value:
 
-| Name                           | Description                                                                                     | Value  |
-|--------------------------------|-------------------------------------------------------------------------------------------------|--------|
-| `jobstarter.enabled`           | Set to False for not deploying Index service                                                    | `True` |
-| `jobstarter.containerRegistry` | Global Docker image registry                                                                    | ``     |
-| `jobstarter.maxReplicas`       | Maximum quantity of GPU instances to be created. Please check your GPU Node group configuration | `"1"`  |
+| Name                              | Description                                                                                                                               | Value   |
+|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| `jobstarter.enabled`              | Set to False for not deploying Index service                                                                                              | `True`  |
+| `jobstarter.containerRegistry`    | Global Docker image registry                                                                                                              | ``      |
+| `jobstarter.maxReplicas`          | Maximum quantity of GPU instances to be created. Please check your GPU Node group configuration                                           | `"1"`   |
+| `jobstarter.sleepBetweenEvaluation` | Seconds the job-starte will wait before getting a new message count of the Queue                                                          | `"30"`  |
+| `jobstarter.serviceTriggerThershold` | Value limit to reach to trigger a model-inference job creation, with AVG metric: 1 or more messages will trigger a inference job creation | `"0"`   |
+| `jobstarter.metric` | Metric used for calculate if a new job need to be created can be `"AVG"`,`"SPEED"`,`"MIN"`,`"MAX"`   | `"AVG"` |
 
 ### Model Inference parameters
 
 Optional Parameters, if set, will override the corresponding global.value:
 
-| Name                               | Description                                      | Value   |
-|------------------------------------|--------------------------------------------------|---------|
-| `modelinference.enabled`           | Set to False for not deploying Inference service | `True`  |
-| `modelinference.containerRegistry` | Global Docker image registry                     | ``      |
-| `modelinference.environment`       | Environment for the deployment                   | ``      |
+| Name                                  | Description                                                                                          | Value |
+|---------------------------------------|------------------------------------------------------------------------------------------------------|-------|
+| `modelinference.enabled`              | Set to False for not deploying Inference service                                                     |`True` |
+| `modelinference.containerRegistry`    | Global Docker image registry                                                                         | ``    |
+| `modelinference.environment`          | Environment for the deployment                                                                       | ``    |
+| `modelinference.inactivityTimeout`    | Seconds the application will wait for new message in the queue before shutdown pod                   | `300` |
 
-### Model Services parameters
 
-Optional Parameters, if set, will override the corresponding global.value:
 
-| Name                              | Description                                           | Value   |
-|-----------------------------------|-------------------------------------------------------|---------|
-| `modelservices.enabled`           | Set to False for not deploying Model Services service | `True`  |
-| `modelservices.containerRegistry` | Global Docker image registry                          | ``      |
 
 ### Search parameters
 
@@ -320,6 +333,22 @@ Optional Parameters, if set, will override the corresponding global.value:
 
 ### Spider parameters
 
+Environmental variables description:
+
+| Name                                  | Description                                                                                 | Value         |
+|---------------------------------------|---------------------------------------------------------------------------------------------|---------------|
+| `spider.sonarMaxRetry`                | Max amount of retries to connect into Sonarqube API.                                        | `"30"`        |
+| `spider.sonarRetrySleepInterval`      | Seconds to wait between every retry to connect to Sonarqube API after an analysis.          | `"30"`        |
+| `spider.snQueueContext`               | Queue name for spider publisher.                                                            | `"sn.spider"` |
+| `spider.rabbitQueue`                  | RabbitMQ queue name for spider consumer.                                                    | `"sn.context"`|
+| `spider.experimental`                 | Activate or deactivate experimental features such as assistantdatabase enqueue message.     | `"0"`         |
+| `spider.reconnectionDelay`            | Retries amount to reconnect to RabbitMQ queue.                                              | `"5"`         |
+| `spider.csaStrategy`                  | Enable the strategy to be used on health/code smells metadata generation. Supported values: `"SONAR_COMMUNITY"`,`"SONAR_ENTERPRISE"`, `"PMD"`, `"COBOL"`, `"DISABLED"`. Concatenate with a comma `,` to activate more than one (`"PMD,COBOL"`). Use `"DISABLED"` to deactivate step. | `""` |
+| `spider.dependencyGraph`              |  Enable the strategy to be used on dependencies metadata generation. Supported values:  `"EMERGE"` , `"COBOL"` , `"DISABLED"`. Concatenate with a comma `,` to activate more than one (`"EMERGE,COBOL"`). Use `"DISABLED"` to deactivate step. | `""`   |
+
+
+
+
 Optional Parameters, if set, will override the corresponding global.value:
 
 | Name                       | Description                                                    | Value  |
@@ -332,6 +361,16 @@ Optional Parameters, if set, will override the corresponding global.value:
 | `spider.azureToken`        | BitBucket personal token. Only used if Auth failed to get one  | ``     |
 | `spider.githubComToken`    | BitBucket personal token. Only used if Auth failed to get one  | ``     |
 | `spider.githubCorpToken`   | BitBucket personal token. Only used if Auth failed to get one  | ``     |
+
+### Structure Indexer parameters
+
+Optional Parameters, if set, will override the corresponding global.value:
+
+| Name                                   | Description                                                | Value   |
+|----------------------------------------|------------------------------------------------------------|---------|
+| `structureindexer.enabled`             | Set to False for not deploying Structure Indexer service   | `True`  |
+| `structureindexer.containerRegistry`   | Global Docker image registry                               | ``      |
+
 
 ### Structure Retrieval parameters
 
@@ -356,6 +395,27 @@ Optional Parameters, if set, will override the corresponding global.value:
 |------------------------|-------------------------------------------|---------|
 | `ui.enabled`           | Set to False for not deploying UI service | `True`  |
 | `ui.containerRegistry` | Global Docker image registry              | ``      |
+
+### Assistant Database parameters
+
+Required Parameters
+
+| Name                                  | Description                                                              | Value        |
+|---------------------------------------|--------------------------------------------------------------------------|--------------|
+| `assistantdatabase.reconnectionDelay` | Retries to re-connect to queue                                           | `"5"`        |
+| `assistantdatabase.rabbitQueue`       | RabbitMQ queue name                                                      | `""`         |
+| `assistantdatabase.getCommitDays`     | Amount of days to consider to extract Git metadata                       | `"2000"`     |
+
+
+
+Optional Parameters, if set, will override the corresponding global.value:
+
+| Name                                  | Description                                                               | Value  |
+|---------------------------------------|---------------------------------------------------------------------------|--------|
+| `assistantdatabase.enabled`           | Set to False for not deploying assistantdatabase service                  | `True` |
+| `assistantdatabase.containerRegistry` | Global Docker image registry                                              | ``     |
+| `assistantdatabase.volumeServer`      | NFS server to connect to                                                  | ``     |
+| `assistantdatabase.volumeRootPath`    | NFS Root Path for mounting the directories in assistantdatabase container | ``     |
 
 ## JWT Configuration
 
@@ -383,30 +443,38 @@ for instance:
 
 if you want to add a GitHub repository:
 
+documentation about [how to create Auth App in GitHub here](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app)
+
 ```yaml
   reposProviders:
     - name: github
       url: "" # THIS FIELD NEEDS TO BE EMPTY
       admins: user1,user2
+#     defaultRole: only if admins is not present can be used to make every user by default admin with the value ROLE_ADMIN
       clientId: Client ID from OAuth Apps
-      clientSecret: Secret from OAuth Apps
+      clientSecret: Client Secret from OAuth Apps
       userAttr: login
       clientName: GitHub
       scope: read:user,repo
+      type: GITHUB
 ```
 
 if you want to add an Azure repository:
+
+documentation about [how to create OAuth 2 web Application in Azure DevOps here](https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/azure-devops-oauth?view=azure-devops)
 
 ```yaml
   reposProviders:
     - name: azure
       url: https://dev.azure.com/augoor
       admins: username1,username2
+#     defaultRole: only if admins is not present can be used to make every user by default admin with the value ROLE_ADMIN      
       clientId: APP ID from Authorizations
-      clientSecret: Clien Secret from Authorizations
+      clientSecret: Client Secret from Authorizations
       userAttr: login
       clientName: Azure repos
       scope: vso.code,vso.project
+      type: AZURE_REPOS
 ```
 
 And, of course, both repositories
@@ -421,28 +489,33 @@ And, of course, both repositories
       userAttr: login
       clientName: GitHub
       scope: read:user,repo
+      type: GITHUB
     - name: azure
       url: https://dev.azure.com/augoor
       admins: username1,username2
       clientId: APP ID from Authorizations
-      clientSecret: Clien Secret from Authorizations
+      clientSecret: Client Secret from Authorizations
       userAttr: login
       clientName: Azure repos
       scope: vso.code,vso.project
+      type: AZURE_REPOS
 ```
   
 if you want to add a GitLab SaaS repository:
 
+documentation to [create user-owned application in gitlab here](https://docs.gitlab.com/ee/integration/oauth_provider.html#create-a-user-owned-application)
+
 ```yaml
   reposProviders:
     - name: gitlab
-      url: "" # THIS FIELD NEEDS TO BE EMPTY
+      url: "https://bitbucket.org" 
       admins: user1,user2
       clientId: Application ID from Applications
-      clientSecret: Clien Secret from Secret field
+      clientSecret: Client Secret from Secret field
       userAttr: username
       clientName: GitLab
       scope: read_user,read_api,read_repository
+      type: GITLAB
 ```
 
 if you want to add a GitLab self-managed repository:
@@ -450,11 +523,11 @@ if you want to add a GitLab self-managed repository:
 ```yaml
   reposProviders:
     - name: gitlab
-      type: gitlab
-      url: "" # THIS FIELD NEEDS TO BE EMPTY
+      type: GITLAB
+      url: "url of your installation of gitlab"
       admins: user1,user2
       clientId: Application ID from Applications
-      clientSecret: Clien Secret from Secret field
+      clientSecret: Client Secret from Secret field
       userAttr: username
       clientName: GitLab
       scope: read_user,read_api,read_repository
