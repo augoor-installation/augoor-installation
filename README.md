@@ -21,7 +21,7 @@ The installation does have 3 main stages:
   - Infrastructure Prerequisites
   - RabbitMQ installation
   - Service deployment
-  - internet access to download models from models-sftp.augoor.com
+  - internet access from the cluster to download models from models-sftp.augoor.com
 
 ## Infrastructure Prerequisites
 
