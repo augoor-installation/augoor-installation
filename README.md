@@ -73,7 +73,7 @@ The installation does have 3 main stages:
     | Provider | Service        | Type          |
     |----------|----------------|---------------|
     | AWS      | RDS            | db.t3.micro   | 
-    | Azure    | Azure Database | Standard_B1ms |
+    | Azure    | Azure Database | Standard_ND6s |
     | GCP      | Cloud SQL      | db-g1-small   |
 
   - [Database and user needed!!](./DB_USER.md)
