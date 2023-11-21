@@ -50,6 +50,6 @@ kubectl apply -f ../../dependencies/vhost.yaml -n $RABBIT_NAMESPACE
 kubectl apply -f ../../dependencies/user.yaml -n $RABBIT_NAMESPACE
 kubectl apply -f ../../dependencies/queues.yaml -n $RABBIT_NAMESPACE
 sleep 5
-MQ_USER_NAME=$(kubectl get users.rabbitmq.com augoor-user  -n $RABBIT_NAMESPACE -o json | jq .status.username)
+MQ_USER_NAME=$(kubectl get secret augoor-user-user-credentials -n $RABBIT_NAMESPACE -o jsonpath='{.data.username}' | base64 --decode)
 cat  ../../dependencies/user-permissions.yaml | sed "s/\"\${MQ_USER_NAME}\"/${MQ_USER_NAME}/g" |  kubectl apply -n $RABBIT_NAMESPACE -f -
 echo "MQ User created for Augoor is ${MQ_USER_NAME}"

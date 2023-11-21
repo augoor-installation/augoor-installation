@@ -1,17 +1,17 @@
-> **NOTE**: Check auth.flywayUser and auth.flywayPassword from README.md
+> **NOTE**: Check auth.flywayPassword from README.md
 
 ```sql
-CREATE ROLE ${auth.flywayUser} WITH
+CREATE ROLE augoor_admin WITH
   LOGIN
   CREATEROLE
   ENCRYPTED PASSWORD '${auth.flywayPassword}';
 
-COMMENT ON ROLE ${auth.flywayUser} IS 'Flyway user';
+COMMENT ON ROLE augoor_admin IS 'Flyway user';
 
-GRANT ${auth.flywayUser} to ${db_root_user};
+GRANT augoor_admin to ${db_root_user};
 
 CREATE DATABASE augoor
     WITH 
-    OWNER = ${auth.flywayUser}
+    OWNER = augoor_admin
     ENCODING = 'UTF8';
 ```

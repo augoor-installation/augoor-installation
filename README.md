@@ -7,12 +7,12 @@ Scripts to config and install Augoor System in clients, The objetive is provide 
 
 1. Create corresponding infrastructure as per provider
 2. Install [RabbitMQ](./RabbitMQ.md) 
-3. Create a file with all of your custom values in examples/my-values.yaml
+3. Create a file with all of your custom values in my-values.yaml, using examples/$provider.yaml as template
 4. Install the Helm Chart as follows
 
 ```console
-cd helm
-helm install my-release augoor . -f ../examples/my-values.yaml --namespace [augoor-k8s-namespace | augoor-openshift-project]
+helm repo add augoor https://charts.augoor.com/augoor
+helm install my-release augoor/augoor -f my-values.yaml --version 9.1.5 --namespace [augoor-k8s-namespace | augoor-openshift-project]
 ```
 
 ## Introduction
@@ -68,18 +68,22 @@ The installation does have 3 main stages:
 
 ### Database
 
+> IMPORTANT: `augoor` username are reserved for internal use. Please do not name any user or database as augoor 
+
   - A PostgreSQL database in the following services:
 
     | Provider | Service        | Type          |
     |----------|----------------|---------------|
     | AWS      | RDS            | db.t3.micro   | 
-    | Azure    | Azure Database | Standard_ND6s |
+    | Azure    | Azure Database | Standard_B1ms |
     | GCP      | Cloud SQL      | db-g1-small   |
 
   - [Database and user needed!!](./DB_USER.md)
 
 ### Others
    - [Rabbit MQ](./RabbitMQ.md)  Installed     
+   - [Java Keytool](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html) installed
+   - Augoor installation URL needs to be defined and set in `global.appurl` variable. This will be the url to access to Augoor, i.e. augoor.my-company.com
 
 ### Configuration steps as per provider
 
@@ -123,8 +127,8 @@ This chart bootstrap an [Augoor](https://augoor.ai) deployment on a [OpenShift](
 
 To install the chart with the release name `my-release`:
 ```console
-cd helm
-helm install my-release augoor -f ../examples/my-values.yaml --namespace [augoor-k8s-namespace | augoor-openshift-project]
+helm repo add augoor https://charts.augoor.com/augoor
+helm install my-release augoor/augoor -f my-values.yaml --version 9.1.5 --namespace [augoor-k8s-namespace | augoor-openshift-project]
 ```
 
 ### Uninstalling the Chart
@@ -181,22 +185,22 @@ The command removes all the Kubernetes components associated with the chart and 
 
 Required Parameters:
 
-| Name                      | Description                                                                             | Value  |
-|---------------------------|-----------------------------------------------------------------------------------------|--------|
-| `auth.flywayUser`         | PostgreSQL DB admin user.                                                               | `""`   |
-| `auth.flywayPassword`     | Password for the PostgreSQL DB admin user                                               | `""`   |
-| `auth.postgresqlPassword` | Password for `augooruser` PostgreSQL user                                               | `""`   |
-| `auth.reposProvider`      | List of repositories to be used by Augoor. See [reposProvider](#repos-provider) section | `[]`   |
+| Name                  | Description                                                                             | Value  |
+|-----------------------|-----------------------------------------------------------------------------------------|--------|
+| `auth.flywayPassword` | Password for the PostgreSQL DB admin user                                               | `""`   |
+| `auth.reposProvider`  | List of repositories to be used by Augoor. See [reposProvider](#repos-provider) section | `[]`   |
 
 Optional Parameters, if set, will override the corresponding global.value:
 
-| Name                     | Description                                 | Value  |
-|--------------------------|---------------------------------------------|--------|
-| `auth.enabled`           | Set to False for not deploying Auth service | `True` |
-| `auth.environment`       | Environment for the deployment              | ``     |
-| `auth.containerRegistry` | Global Docker image registry                | ``     |
-| `auth.postgresqlServer`  | PostgreSQL server to connect to             | ``     |
-| `auth.postgresqlPort`    | Port to connect to PostgreSQL server        | ``     |
+| Name                      | Description                                 | Value                  |
+|---------------------------|---------------------------------------------|------------------------|
+| `auth.enabled`            | Set to False for not deploying Auth service | `True`                 |
+| `auth.environment`        | Environment for the deployment              | ``                     |
+| `auth.flywayUser`         | PostgreSQL DB admin user.                   | `"augoor_admin"`       |
+| `auth.postgresqlPassword` | Password for `augoor` PostgreSQL user       | `"DBUserPassword1234"` |
+| `auth.containerRegistry`  | Global Docker image registry                | ``                     |
+| `auth.postgresqlServer`   | PostgreSQL server to connect to             | ``                     |
+| `auth.postgresqlPort`     | Port to connect to PostgreSQL server        | ``                     |
 
 ### Codeprocessor parameters
 
@@ -383,30 +387,37 @@ for instance:
 
 if you want to add a GitHub repository:
 
+documentation about [how to create Auth App in GitHub here](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app)
+
 ```yaml
   reposProviders:
     - name: github
-      url: "" # THIS FIELD NEEDS TO BE EMPTY
       admins: user1,user2
+#     defaultRole: only if admins is not present can be used to make every user by default admin with the value ROLE_ADMIN
       clientId: Client ID from OAuth Apps
-      clientSecret: Secret from OAuth Apps
+      clientSecret: Client Secret from OAuth Apps
       userAttr: login
       clientName: GitHub
       scope: read:user,repo
+      type: GITHUB
 ```
 
 if you want to add an Azure repository:
+
+documentation about [how to create OAuth 2 web Application in Azure DevOps here](https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/azure-devops-oauth?view=azure-devops)
 
 ```yaml
   reposProviders:
     - name: azure
       url: https://dev.azure.com/augoor
       admins: username1,username2
+#     defaultRole: only if admins is not present can be used to make every user by default admin with the value ROLE_ADMIN      
       clientId: APP ID from Authorizations
-      clientSecret: Clien Secret from Authorizations
+      clientSecret: Client Secret from Authorizations
       userAttr: login
       clientName: Azure repos
       scope: vso.code,vso.project
+      type: AZURE_REPOS
 ```
 
 And, of course, both repositories
@@ -414,35 +425,39 @@ And, of course, both repositories
 ```yaml
   reposProviders:
     - name: github
-      url: "" # THIS FIELD NEEDS TO BE EMPTY
       admins: user1,user2
       clientId: Client ID from OAuth Apps
       clientSecret: Secret from OAuth Apps
       userAttr: login
       clientName: GitHub
       scope: read:user,repo
+      type: GITHUB
     - name: azure
       url: https://dev.azure.com/augoor
       admins: username1,username2
       clientId: APP ID from Authorizations
-      clientSecret: Clien Secret from Authorizations
+      clientSecret: Client Secret from Authorizations
       userAttr: login
       clientName: Azure repos
       scope: vso.code,vso.project
+      type: AZURE_REPOS
 ```
   
 if you want to add a GitLab SaaS repository:
 
+documentation to [create user-owned application in gitlab here](https://docs.gitlab.com/ee/integration/oauth_provider.html#create-a-user-owned-application)
+
 ```yaml
   reposProviders:
     - name: gitlab
-      url: "" # THIS FIELD NEEDS TO BE EMPTY
+      url: "https://bitbucket.org" 
       admins: user1,user2
       clientId: Application ID from Applications
-      clientSecret: Clien Secret from Secret field
+      clientSecret: Client Secret from Secret field
       userAttr: username
       clientName: GitLab
       scope: read_user,read_api,read_repository
+      type: GITLAB
 ```
 
 if you want to add a GitLab self-managed repository:
@@ -450,11 +465,11 @@ if you want to add a GitLab self-managed repository:
 ```yaml
   reposProviders:
     - name: gitlab
-      type: gitlab
-      url: "" # THIS FIELD NEEDS TO BE EMPTY
+      type: GITLAB
+      url: "url of your installation of gitlab"
       admins: user1,user2
       clientId: Application ID from Applications
-      clientSecret: Clien Secret from Secret field
+      clientSecret: Client Secret from Secret field
       userAttr: username
       clientName: GitLab
       scope: read_user,read_api,read_repository

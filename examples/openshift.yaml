@@ -35,9 +35,7 @@ ui:
   useServiceAccount: true
 
 auth:
-  flywayUser: PostgreSQL DB admin user
   flywayPassword: Password for Postgresql DB admin
-  postgresqlPassword: Password for Postgresql Auth user
   reposProviders:
     - name: github
       url: ""

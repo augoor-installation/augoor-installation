@@ -9,8 +9,8 @@ PASSWORD=$2
 
 kubectl create secret docker-registry acr-secret \
     --namespace augoor \
-    --docker-server=augoor01.azurecr.io \
+    --docker-server=augoor.azurecr.io \
     --docker-username=${USER_NAME} \
     --docker-password=${PASSWORD}
 
-echo "Secret acr-secret created for with the credencials to pull images from augoor01.azurecr.io"
+echo "Secret acr-secret created for with the credencials to pull images from augoor.azurecr.io"
