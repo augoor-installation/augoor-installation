@@ -71,6 +71,30 @@ spec:
   vhost: augoor-vhost
 ---
 apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: metadata # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.metadata # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
+---
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: inference # name of this custom resource; does not have to the same as the actual queue name
+spec:
+  name: sn.inference # name of the queue
+  autoDelete: false
+  durable: true
+  rabbitmqClusterReference:
+    name: rabbitmq-cluster
+  vhost: augoor-vhost
+---
+apiVersion: rabbitmq.com/v1beta1
 kind: Binding
 metadata:
   name: binding
