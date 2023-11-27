@@ -40,7 +40,7 @@ The installation does have 3 main stages:
     | Provider | Type of instances                  |Scale Min | Scale Max | Disk   | GPU Support                                                                                                                                              |
     |----------|------------------------------------|-----|-----|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
     | AWS      | g5.4xlarge                         | 0   | >=1   | 180 GB | Needed: [Amazon EKS optimized accelerated AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami)                          |
-    | Azure    | Standard_NC4as_T4_v                | 0   | >=1   | 180 GB | Needed: [AKS GPU image enabled](https://learn.microsoft.com/en-us/azure/aks/gpu-cluster)                                                                 |
+    | Azure    | Standard_ND6s                      | 0   | >=1   | 180 GB | Needed: [AKS GPU image enabled](https://learn.microsoft.com/en-us/azure/aks/gpu-cluster)                                                                 |
     | GCP      | n1-standard-8 + 1 GPU NVIDIA V100  | 0   | >=1   | 180 GB | Needed: [Install NVIDIA GPU drivers automatically or manually](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#create-gpu-pool-auto-drivers) |
 
 

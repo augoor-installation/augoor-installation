@@ -58,7 +58,7 @@ az aks nodepool add -n $GPU_NODEPOOL -g $RESOURCE_GROUP \
   --cluster-name $clusterName \
   --max-pods 100 \
   --node-count 1 \
-  --node-vm-size Standard_NC4as_T4_v3 \
+  --node-vm-size 	Standard_ND6s \
   --vnet-subnet-id /subscriptions/$subscription/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Network/virtualNetworks/$vnet/subnets/$snet \
   --tags $tags  
 ```
