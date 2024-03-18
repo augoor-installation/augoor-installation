@@ -1,2 +1,0 @@
-az postgres flexible-server create --resource-group Augoor-EKS-Install --location eastus --vnet Install-test-VPC --subnet Private-DB
-az postgres flexible-server delete --name server883804807 --resource-group Augoor-EKS-Install
