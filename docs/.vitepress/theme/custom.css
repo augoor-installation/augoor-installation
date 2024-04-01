@@ -1,0 +1,21 @@
+.guide-set-title{
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: -0.01em;
+    margin:32px 0 0;
+    font-weight:400;
+}
+
+.text-small{
+    font-size: 12px !important;
+}
+
+
+.text-gradient{
+    background: #FF6442;
+    background: -webkit-linear-gradient(to right, #FF6442 0%, #6667AB 100%);
+    background: -moz-linear-gradient(to right, #FF6442 0%, #6667AB 100%);
+    background: linear-gradient(to right, #FF6442 0%, #6667AB 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
