@@ -23,6 +23,7 @@ export default defineConfig({
       },
       { text: 'Knowledge Center', link: '/knowledge_center/getting_started/index', activeMatch: '/knowledge_center/getting_started/' },
       { text: 'Augoor.ai', link: 'https://augoor.ai' },
+      { text: 'Logout', link: 'https://kc-auth-dev.augoor.com/_identity/logout' },
     ],
 
     head : [],
