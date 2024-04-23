@@ -184,14 +184,15 @@ function getting_started_sidebar() {
       items: [
         { text: 'Manage repositories', link: '/knowledge_center/repository_management/manage_repositories' },
         { text: 'Repositories Status', link: '/knowledge_center/repository_management/repositories_status' },
-        { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' }
+        { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' },
+        { text: 'Delete repositories', link: '/knowledge_center/repository_management/delete_repositories' },
       ]
     },
     {
       text: 'Code Search',
       items: [
         { text: 'Search Overview', link: '/knowledge_center/code_search/search_overview' },
-        { text: 'Advanced Search Techniques', link: '/knowledge_center/code_search/advanced_search_techniques' },
+        { text: 'How to explore documentation', link: '/knowledge_center/code_search/how_to_explore_documentation' },
         { text: 'Interactive Tutorial', link: '/knowledge_center/code_search/Interactive_tutorial' }
       ]
     },
@@ -206,8 +207,8 @@ function getting_started_sidebar() {
       text: 'Code Navigation',
       items: [
         { text: 'Codemap overview', link: '/knowledge_center/code_navigation/codemaps_overview' },
-        { text: 'Navigating codemap', link: '/knowledge_center/code_navigation/navigating_codemap' },
-        { text: 'Conversational assistant (beta)', link: '/knowledge_center/code_navigation/conversational_assistant' }
+        { text: 'Navigating codemap', link: '/knowledge_center/code_navigation/navigating_codemap' }
+        // { text: 'Conversational assistant (beta)', link: '/knowledge_center/code_navigation/conversational_assistant' }
       ]
     },
     {

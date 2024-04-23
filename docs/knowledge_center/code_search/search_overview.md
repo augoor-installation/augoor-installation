@@ -15,7 +15,7 @@ Augoor's code search is your efficient assistant in navigating the complexities 
 **How to initiate a search:**
 Simply enter your query in the search bar, and Augoor will guide you through the rest.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5acf7300-f940-49a0-a9ef-1557fb033f18/1c88487c-2ae6-4856-9796-a65351841c39/Untitled.png)
+<img src="../imgs/search/search.png">
 
 **Narrowing down your search with Augoor:**
 
