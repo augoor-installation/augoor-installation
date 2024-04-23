@@ -184,7 +184,8 @@ function getting_started_sidebar() {
       items: [
         { text: 'Manage repositories', link: '/knowledge_center/repository_management/manage_repositories' },
         { text: 'Repositories Status', link: '/knowledge_center/repository_management/repositories_status' },
-        { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' }
+        { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' },
+        { text: 'Delete repositories', link: '/knowledge_center/repository_management/delete_repositories' },
       ]
     },
     {
