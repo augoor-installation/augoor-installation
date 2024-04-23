@@ -206,8 +206,8 @@ function getting_started_sidebar() {
       text: 'Code Navigation',
       items: [
         { text: 'Codemap overview', link: '/knowledge_center/code_navigation/codemaps_overview' },
-        { text: 'Navigating codemap', link: '/knowledge_center/code_navigation/navigating_codemap' },
-        { text: 'Conversational assistant (beta)', link: '/knowledge_center/code_navigation/conversational_assistant' }
+        { text: 'Navigating codemap', link: '/knowledge_center/code_navigation/navigating_codemap' }
+        // { text: 'Conversational assistant (beta)', link: '/knowledge_center/code_navigation/conversational_assistant' }
       ]
     },
     {

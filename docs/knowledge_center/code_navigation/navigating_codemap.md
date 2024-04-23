@@ -2,7 +2,7 @@
 
 The graphics are highly intuitive and user-friendly, and file color gradients are shown depending on the active repositories.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5acf7300-f940-49a0-a9ef-1557fb033f18/10cd269e-0fec-4e78-8e1d-c2ebb5f2dfa2/Untitled.png)
+<img src="../imgs/code_navigation/navigating_codemap.png">
 
 - **Repository**: Go back to this filter whenever you need to check or uncheck the repositories you want to visualize.
 - **Author**: A list of all Cloud provider authors subscribed to the repository(s) to be visualized.
