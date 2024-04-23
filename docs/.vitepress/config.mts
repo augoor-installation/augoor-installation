@@ -106,7 +106,7 @@ function docker_linux2023_sidebar() {
 
 function aws_sidebar() {
   return [
-     { text: 'Overview', link: '/1.9.1/installation/guides/helm_chart/aws/' },
+     { text: 'Overview', link: '/1.11.0/installation/guides/helm_chart/aws/' },
     {
       text: 'Steps',
       items: [
