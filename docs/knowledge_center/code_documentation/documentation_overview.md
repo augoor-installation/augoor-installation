@@ -5,14 +5,13 @@
 **What is Augoor’s code documentation?**
 Augoor’s code documentation feature is a breakthrough in understanding and navigating codebases. Powered by AI, it generates natural language documentation, seamlessly integrating it with your code. This integration forms a comprehensive search index, allowing you to explore using familiar terms or by navigating the code directly.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5acf7300-f940-49a0-a9ef-1557fb033f18/dad37d58-5619-4880-ab59-029990d2f41c/Untitled.png)
+<img src="../imgs/code_documentation/code_documentation.png">
 
 **Key Features of Augoor’s code documentation:**
 
 1. **AI-generated explanations:**
     - **Parameter details:** Understand every function’s parameters with detailed explanations.
     - **Function documentation:** Access AI-crafted documentation for each function.
-    - **Line-by-line analysis:** Gain insights into your code with line-by-line documentation.
 2. **Integrated and accessible:**
     - **Searchable documentation:** Both code and its AI-generated documentation are part of a single, searchable index.
     - **Natural language processing:** Our AI uses natural language, making the documentation intuitive and easy to grasp.
