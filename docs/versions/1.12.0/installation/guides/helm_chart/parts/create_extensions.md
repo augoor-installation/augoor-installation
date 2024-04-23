@@ -1,0 +1,3 @@
+```sql
+CREATE EXTENSION pgcrypto;
+```
