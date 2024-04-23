@@ -17,7 +17,7 @@ export default defineConfig({
       {
         text: 'Installation',
         items: [
-          { text: 'Helm Chart', link: '/1.11.0/installation/guides/helm_chart/index' },
+          { text: 'Helm Chart', link: '/1.12.0/installation/guides/helm_chart/index' },
           { text: 'Docker Compose', link: '/1.9.1/installation/guides/docker_compose/index' },
         ]
       },
@@ -58,10 +58,10 @@ function sidebars() {
   return {
     '/1.9.1/installation/guides/docker_compose/amazon_linux_2/': docker_linux2_sidebar(),
     '/1.9.1/installation/guides/docker_compose/amazon_linux_2023/': docker_linux2023_sidebar(),
-    '/1.11.0/installation/guides/helm_chart/aws/': aws_sidebar(),
-    '/1.11.0/installation/guides/helm_chart/azure/': azure_sidebar(),
-    '/1.11.0/installation/guides/helm_chart/gcp/': gcp_sidebar(),
-    '/1.11.0/installation/guides/helm_chart/openshift/': openshift_sidebar(),
+    '/1.12.0/installation/guides/helm_chart/aws/': aws_sidebar(),
+    '/1.12.0/installation/guides/helm_chart/azure/': azure_sidebar(),
+    '/1.12.0/installation/guides/helm_chart/gcp/': gcp_sidebar(),
+    '/1.12.0/installation/guides/helm_chart/openshift/': openshift_sidebar(),
     '/knowledge_center/getting_started': getting_started_sidebar(),
     '/knowledge_center/repository_management': getting_started_sidebar(),
     '/knowledge_center/code_search': getting_started_sidebar(),
@@ -110,11 +110,11 @@ function aws_sidebar() {
     {
       text: 'Steps',
       items: [
-        { text: 'Step 1. Infrastructure Overview', link: '/1.11.0/installation/guides/helm_chart/aws/infrastructure_overview' },
-        { text: 'Step 2. Preparing the Infrastructure', link: '/1.11.0/installation/guides/helm_chart/aws/preparing_infrastructure' },
-        { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/1.11.0/installation/guides/helm_chart/aws/preparing_queue_server' },
-        { text: 'Step 4. Configuration', link: '/1.11.0/installation/guides/helm_chart/aws/configuration' },
-        { text: 'Step 5. Installation', link: '/1.11.0/installation/guides/helm_chart/aws/installation' },
+        { text: 'Step 1. Infrastructure Overview', link: '/1.12.0/installation/guides/helm_chart/aws/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/1.12.0/installation/guides/helm_chart/aws/preparing_infrastructure' },
+        { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/1.12.0/installation/guides/helm_chart/aws/preparing_queue_server' },
+        { text: 'Step 4. Configuration', link: '/1.12.0/installation/guides/helm_chart/aws/configuration' },
+        { text: 'Step 5. Installation', link: '/1.12.0/installation/guides/helm_chart/aws/installation' },
       ]
     }
   ]
@@ -122,15 +122,15 @@ function aws_sidebar() {
 
 function azure_sidebar() {
   return [
-     { text: 'Overview', link: '/1.11.0/installation/guides/helm_chart/azure/' },
+     { text: 'Overview', link: '/1.12.0/installation/guides/helm_chart/azure/' },
     {
       text: 'Steps',
       items: [
-        { text: 'Step 1. Infrastructure Overview', link: '/1.11.0/installation/guides/helm_chart/azure/infrastructure_overview' },
-        { text: 'Step 2. Preparing the Infrastructure', link: '/1.11.0/installation/guides/helm_chart/azure/preparing_infrastructure' },
-        { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/1.11.0/installation/guides/helm_chart/azure/preparing_queue_server' },
-        { text: 'Step 4. Configuration', link: '/1.11.0/installation/guides/helm_chart/azure/configuration' },
-        { text: 'Step 5. Installation', link: '/1.11.0/installation/guides/helm_chart/azure/installation' },
+        { text: 'Step 1. Infrastructure Overview', link: '/1.12.0/installation/guides/helm_chart/azure/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/1.12.0/installation/guides/helm_chart/azure/preparing_infrastructure' },
+        { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/1.12.0/installation/guides/helm_chart/azure/preparing_queue_server' },
+        { text: 'Step 4. Configuration', link: '/1.12.0/installation/guides/helm_chart/azure/configuration' },
+        { text: 'Step 5. Installation', link: '/1.12.0/installation/guides/helm_chart/azure/installation' },
       ]
     }
   ]
@@ -138,15 +138,15 @@ function azure_sidebar() {
 
 function gcp_sidebar() {
   return [
-     { text: 'Overview', link: '/1.11.0/installation/guides/helm_chart/gcp/' },
+     { text: 'Overview', link: '/1.12.0/installation/guides/helm_chart/gcp/' },
     {
       text: 'Steps',
       items: [
-        { text: 'Step 1. Infrastructure Overview', link: '/1.11.0/installation/guides/helm_chart/gcp/infrastructure_overview' },
-        { text: 'Step 2. Preparing the Infrastructure', link: '/1.11.0/installation/guides/helm_chart/gcp/preparing_infrastructure' },
-        { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/1.11.0/installation/guides/helm_chart/gcp/preparing_queue_server' },
-        { text: 'Step 4. Configuration', link: '/1.11.0/installation/guides/helm_chart/gcp/configuration' },
-        { text: 'Step 5. Installation', link: '/1.11.0/installation/guides/helm_chart/gcp/installation' },
+        { text: 'Step 1. Infrastructure Overview', link: '/1.12.0/installation/guides/helm_chart/gcp/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/1.12.0/installation/guides/helm_chart/gcp/preparing_infrastructure' },
+        { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/1.12.0/installation/guides/helm_chart/gcp/preparing_queue_server' },
+        { text: 'Step 4. Configuration', link: '/1.12.0/installation/guides/helm_chart/gcp/configuration' },
+        { text: 'Step 5. Installation', link: '/1.12.0/installation/guides/helm_chart/gcp/installation' },
       ]
     }
   ]
@@ -154,15 +154,15 @@ function gcp_sidebar() {
 
 function openshift_sidebar() {
   return [
-     { text: 'Overview', link: '/1.11.0/installation/guides/helm_chart/openshift/' },
+     { text: 'Overview', link: '/1.12.0/installation/guides/helm_chart/openshift/' },
     {
       text: 'Steps',
       items: [
-        { text: 'Step 1. Infrastructure Overview', link: '/1.11.0/installation/guides/helm_chart/openshift/infrastructure_overview' },
-        { text: 'Step 2. Preparing the Infrastructure', link: '/1.11.0/installation/guides/helm_chart/openshift/preparing_infrastructure' },
-        { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/1.11.0/installation/guides/helm_chart/openshift/preparing_queue_server' },
-        { text: 'Step 4. Configuration', link: '/1.11.0/installation/guides/helm_chart/openshift/configuration' },
-        { text: 'Step 5. Installation', link: '/1.11.0/installation/guides/helm_chart/openshift/installation' },
+        { text: 'Step 1. Infrastructure Overview', link: '/1.12.0/installation/guides/helm_chart/openshift/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/1.12.0/installation/guides/helm_chart/openshift/preparing_infrastructure' },
+        { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/1.12.0/installation/guides/helm_chart/openshift/preparing_queue_server' },
+        { text: 'Step 4. Configuration', link: '/1.12.0/installation/guides/helm_chart/openshift/configuration' },
+        { text: 'Step 5. Installation', link: '/1.12.0/installation/guides/helm_chart/openshift/installation' },
       ]
     }
   ]
