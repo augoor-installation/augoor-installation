@@ -9,10 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Getting Started with Helm Chart
-      link: /1.11.0/installation/guides/helm_chart/index
-    - theme: brand
-      text: Getting Started with Docker Compose
-      link: /1.9.1/installation/guides/docker_compose/index
+      link: /2.0.0/installation/guides/helm_chart/index
     - theme: alt
       text: Knowledge Center
       link: /knowledge_center/getting_started/index
