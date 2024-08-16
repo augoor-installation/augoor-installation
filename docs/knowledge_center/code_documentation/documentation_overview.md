@@ -1,28 +1,46 @@
-# Code Documentation
+# What is Augoor’s code documentation?
 
-**Understanding Augoor’s code documentation:** 
+Augoor’s AI generates natural language documentation for your code, bundling it into a single searchable index. This makes it easy for you to explore and understand your code in your own words or by navigating the code itself.
 
-**What is Augoor’s code documentation?**
-Augoor’s code documentation feature is a breakthrough in understanding and navigating codebases. Powered by AI, it generates natural language documentation, seamlessly integrating it with your code. This integration forms a comprehensive search index, allowing you to explore using familiar terms or by navigating the code directly.
+Here’s what you’ll find when you search:
 
-<img src="../imgs/code_documentation/code_documentation.png">
+- **Explanation**: A general overview of what the code does.
+- **Summary of the code**: A concise summary from start to finish.
+- **Step by step of what the code does**: A detailed, technical explanation, almost like pseudo-code.
+- **What problem does this code solve**
+- **Parameters documentation**: Detailed information about each function’s parameters.
+- **Issues it Fixes**: Descriptions of what problems the function solves.
 
-**Key Features of Augoor’s code documentation:**
 
-1. **AI-generated explanations:**
-    - **Parameter details:** Understand every function’s parameters with detailed explanations.
-    - **Function documentation:** Access AI-crafted documentation for each function.
-2. **Integrated and accessible:**
-    - **Searchable documentation:** Both code and its AI-generated documentation are part of a single, searchable index.
-    - **Natural language processing:** Our AI uses natural language, making the documentation intuitive and easy to grasp.
+### *Note*
 
-**How to Interact with the Documentation:**
-Interacting with Augoor’s documentation is straightforward. As you navigate your code, the AI-generated explanations are displayed alongside, offering immediate insights and understanding. This integrated approach means you can access documentation without disrupting your coding flow.
+*All generated documentation is in English by default but can also be produced in Spanish. The current language you see is the one selected by your stakeholder. If you need to change or add a language, please contact your internal team to request this adjustment.*
 
-**Preserving Existing Documentation:**
-Your existing documentation is respected and untouched in your SCM account. Augoor displays it´s AI-generated documentation only in our platform, adding an additional layer of understanding without altering your original code.
+### How to interact with the documentation
 
-**Efficient documentation generation:**
+Interacting with Augoor’s documentation is straightforward and designed to fit seamlessly into your workflow:
 
-- **Rapid documentation:** Augoor can document 23 lines of code in just a second, significantly speeding up the documentation process.
-- **High capacity processing:** Capable of handling 1 million lines every 10 hours, Augoor is designed for large-scale efficiency.
+1. Both your code and its AI-generated documentation are part of a single, searchable index. This means you can find exactly what you need without leaving the coding environment.
+2. Our AI uses natural language, making the documentation intuitive and easy to grasp.
+
+As you navigate your code, the AI-generated explanations are displayed alongside, offering immediate insights and understanding. This integrated approach means you can access documentation without disrupting your coding flow.
+
+### Preserving existing documentation
+
+We understand how important your existing documentation is. That’s why Augoor doesn’t alter any of it.
+
+Here’s how we handle it:
+
+- Augoor **does not modify** the documentation already present in your code. We display it exactly as you originally inserted it.
+- The automatically generated documentation by Augoor's AI is shown in a separate container that overlays the code snippet. This serves as a visual layer, enhancing your understanding of the code while keeping your original documentation intact.
+
+### Why this matters to you
+
+Imagine being able to understand and work with your code more effectively and efficiently:
+
+- Quickly grasp what each part of your code does without needing to dive deep into the actual code.
+- With detailed summaries and step-by-step explanations, you get a clear picture of your code’s functionality.
+- Understand the issues your code is meant to solve, making it easier to debug and improve.
+- Get detailed information on function parameters, aiding in accurate implementation and troubleshooting.
+
+By integrating Augoor’s code documentation, you’ll find that your coding experience becomes smoother, faster, and more productive. You can focus more on writing and improving code, and less on deciphering it. Augoor is here to help you excel in your job by making code documentation effortless and comprehensive.

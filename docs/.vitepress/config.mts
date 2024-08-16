@@ -184,22 +184,23 @@ function getting_started_sidebar() {
       items: [
         { text: 'Manage repositories', link: '/knowledge_center/repository_management/manage_repositories' },
         { text: 'Repositories Status', link: '/knowledge_center/repository_management/repositories_status' },
-        { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' }
+        { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' },
+        { text: 'How to manage repositories', link: '/knowledge_center/repository_management/how_to_use_repository_management' },
       ]
     },
     {
       text: 'Code Search',
       items: [
         { text: 'Search Overview', link: '/knowledge_center/code_search/search_overview' },
-        { text: 'How to explore documentation', link: '/knowledge_center/code_search/how_to_explore_documentation' },
-        { text: 'Interactive Tutorial', link: '/knowledge_center/code_search/Interactive_tutorial' }
+        { text: 'How to explore documentation', link: '/knowledge_center/code_search/how_to_explore_documentation' }
+        // { text: 'Interactive Tutorial', link: '/knowledge_center/code_search/Interactive_tutorial' }
       ]
     },
     {
       text: 'Code Documentation',
       items: [
         { text: 'Documentation Overview', link: '/knowledge_center/code_documentation/documentation_overview' },
-        { text: 'Interacting with the documentation', link: '/knowledge_center/code_documentation/interacting_documentation' }
+        { text: 'How to explore code documentation', link: '/knowledge_center/code_documentation/interacting_documentation' }
       ]
     },
     {
