@@ -66,7 +66,7 @@ function sidebars() {
     '/knowledge_center/repository_management': getting_started_sidebar(),
     '/knowledge_center/code_search': getting_started_sidebar(),
     '/knowledge_center/code_documentation': getting_started_sidebar(),
-    '/knowledge_center/code_navigation': getting_started_sidebar(),
+    '/knowledge_center/code_visualization': getting_started_sidebar(),
     '/knowledge_center/code_assistant': getting_started_sidebar(),
     '/knowledge_center/security': getting_started_sidebar(),
     '/knowledge_center/support_resources': getting_started_sidebar()
@@ -204,11 +204,11 @@ function getting_started_sidebar() {
       ]
     },
     {
-      text: 'Code Navigation',
+      text: 'Code visualization',
       items: [
-        { text: 'Codemap overview', link: '/knowledge_center/code_navigation/codemaps_overview' },
-        { text: 'Navigating codemap', link: '/knowledge_center/code_navigation/navigating_codemap' }
-        // { text: 'Conversational assistant (beta)', link: '/knowledge_center/code_navigation/conversational_assistant' }
+        { text: 'Codemap', link: '/knowledge_center/code_visualization/codemaps_overview' },
+        { text: 'Navigating codemap', link: '/knowledge_center/code_visualization/navigating_codemap' },
+        { text: 'How to use codemap', link: '/knowledge_center/code_visualization/how_to_use_codemap' },
       ]
     },
     {
