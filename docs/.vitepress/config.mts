@@ -107,7 +107,7 @@ function docker_linux2023_sidebar() {
 
 function aws_sidebar() {
   return [
-     { text: 'Overview', link: '/1.9.1/installation/guides/helm_chart/aws/' },
+     { text: 'Overview', link: '/1.11.0/installation/guides/helm_chart/aws/' },
     {
       text: 'Steps',
       items: [
@@ -185,8 +185,7 @@ function getting_started_sidebar() {
       items: [
         { text: 'Manage repositories', link: '/knowledge_center/repository_management/manage_repositories' },
         { text: 'Repositories Status', link: '/knowledge_center/repository_management/repositories_status' },
-        { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' },
-        { text: 'How to manage repositories', link: '/knowledge_center/repository_management/how_to_use_repository_management' },
+        { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' }
       ]
     },
     {
