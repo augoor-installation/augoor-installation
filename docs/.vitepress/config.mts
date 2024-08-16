@@ -67,6 +67,7 @@ function sidebars() {
     '/knowledge_center/code_search': getting_started_sidebar(),
     '/knowledge_center/code_documentation': getting_started_sidebar(),
     '/knowledge_center/code_visualization': getting_started_sidebar(),
+    '/knowledge_center/code_navigation': getting_started_sidebar(),
     '/knowledge_center/code_assistant': getting_started_sidebar(),
     '/knowledge_center/security': getting_started_sidebar(),
     '/knowledge_center/support_resources': getting_started_sidebar()
@@ -192,7 +193,7 @@ function getting_started_sidebar() {
       text: 'Code Search',
       items: [
         { text: 'Search Overview', link: '/knowledge_center/code_search/search_overview' },
-        { text: 'How to explore documentation', link: '/knowledge_center/code_search/how_to_explore_documentation' }
+        { text: 'How to use code search', link: '/knowledge_center/code_search/how_to_explore_documentation' }
         // { text: 'Interactive Tutorial', link: '/knowledge_center/code_search/Interactive_tutorial' }
       ]
     },
@@ -201,6 +202,13 @@ function getting_started_sidebar() {
       items: [
         { text: 'Documentation Overview', link: '/knowledge_center/code_documentation/documentation_overview' },
         { text: 'How to explore code documentation', link: '/knowledge_center/code_documentation/interacting_documentation' }
+      ]
+    },
+    {
+      text: 'Code navigation',
+      items: [
+        { text: 'Augoor code navigation', link: '/knowledge_center/code_navigation/' },
+        { text: 'How to use class diagrams', link: '/knowledge_center/code_navigation/how_to_use_class_diagrams' },
       ]
     },
     {

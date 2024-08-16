@@ -1,5 +1,7 @@
 # How to use CodeMap
 
+## Index
+
 [1. How to start exploring repositories in codemap](#how-to-start-exploring-repositories-in-codemap)<br />
 [2. How to explore health status in repositories and files into codemap](#how-to-explore-health-status-in-repositories-and-files-into-codemap)<br />
 [3. How to explore complexity estatus in repositories and files into codemap](#how-to-explore-complexity-estatus-in-repositories-and-files-into-codemap)<br />
