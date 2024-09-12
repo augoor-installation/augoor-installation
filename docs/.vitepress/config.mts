@@ -68,10 +68,10 @@ function sidebars() {
     '/1.11.0/installation/guides/helm_chart/azure/': azure_sidebar('1.11.0'),
     '/1.11.0/installation/guides/helm_chart/gcp/': gcp_sidebar('1.11.0'),
     '/1.11.0/installation/guides/helm_chart/openshift/': openshift_sidebar('1.11.0'),
-    '/2.0.0/installation/guides/helm_chart/aws/': aws_sidebar('2.0.0'),
-    '/2.0.0/installation/guides/helm_chart/azure/': azure_sidebar('2.0.0'),
-    '/2.0.0/installation/guides/helm_chart/gcp/': gcp_sidebar('2.0.0'),
-    '/2.0.0/installation/guides/helm_chart/openshift/': openshift_sidebar('2.0.0'),
+    '/2.0.0/installation/guides/helm_chart/aws/': aws_sidebar_2('2.0.0'),
+    '/2.0.0/installation/guides/helm_chart/azure/': azure_sidebar_2('2.0.0'),
+    '/2.0.0/installation/guides/helm_chart/gcp/': gcp_sidebar_2('2.0.0'),
+    '/2.0.0/installation/guides/helm_chart/openshift/': openshift_sidebar_2('2.0.0'),
     '/knowledge_center/getting_started': getting_started_sidebar(),
     '/knowledge_center/repository_management': getting_started_sidebar(),
     '/knowledge_center/code_search': getting_started_sidebar(),
@@ -98,7 +98,6 @@ function docker_linux2_sidebar($version) {
     }
   ]
 }
-
 
 function docker_linux2023_sidebar($version) {
   return [
@@ -131,6 +130,21 @@ function aws_sidebar($version) {
   ]
 }
 
+function aws_sidebar_2($version) {
+  return [
+     { text: 'Overview', link: '/'+$version+'/installation/guides/helm_chart/aws/' },
+    {
+      text: 'Steps',
+      items: [
+        { text: 'Step 1. Infrastructure Overview', link: '/'+$version+'/installation/guides/helm_chart/aws/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/'+$version+'/installation/guides/helm_chart/aws/preparing_infrastructure' },        
+        { text: 'Step 3. Configuration', link: '/'+$version+'/installation/guides/helm_chart/aws/configuration' },
+        { text: 'Step 4. Installation', link: '/'+$version+'/installation/guides/helm_chart/aws/installation' },
+      ]
+    }
+  ]
+}
+
 function azure_sidebar($version) {
   return [
      { text: 'Overview', link: '/'+$version+'/installation/guides/helm_chart/azure/' },
@@ -142,6 +156,21 @@ function azure_sidebar($version) {
         { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/'+$version+'/installation/guides/helm_chart/azure/preparing_queue_server' },
         { text: 'Step 4. Configuration', link: '/'+$version+'/installation/guides/helm_chart/azure/configuration' },
         { text: 'Step 5. Installation', link: '/'+$version+'/installation/guides/helm_chart/azure/installation' },
+      ]
+    }
+  ]
+}
+
+function azure_sidebar_2($version) {
+  return [
+     { text: 'Overview', link: '/'+$version+'/installation/guides/helm_chart/azure/' },
+    {
+      text: 'Steps',
+      items: [
+        { text: 'Step 1. Infrastructure Overview', link: '/'+$version+'/installation/guides/helm_chart/azure/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/'+$version+'/installation/guides/helm_chart/azure/preparing_infrastructure' },
+        { text: 'Step 3. Configuration', link: '/'+$version+'/installation/guides/helm_chart/azure/configuration' },
+        { text: 'Step 4. Installation', link: '/'+$version+'/installation/guides/helm_chart/azure/installation' },
       ]
     }
   ]
@@ -163,6 +192,21 @@ function gcp_sidebar($version) {
   ]
 }
 
+function gcp_sidebar_2($version) {
+  return [
+     { text: 'Overview', link: '/'+$version+'/installation/guides/helm_chart/gcp/' },
+    {
+      text: 'Steps',
+      items: [
+        { text: 'Step 1. Infrastructure Overview', link: '/'+$version+'/installation/guides/helm_chart/gcp/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/'+$version+'/installation/guides/helm_chart/gcp/preparing_infrastructure' },        
+        { text: 'Step 3. Configuration', link: '/'+$version+'/installation/guides/helm_chart/gcp/configuration' },
+        { text: 'Step 4. Installation', link: '/'+$version+'/installation/guides/helm_chart/gcp/installation' },
+      ]
+    }
+  ]
+}
+
 function openshift_sidebar($version) {
   return [
      { text: 'Overview', link: '/'+$version+'/installation/guides/helm_chart/openshift/' },
@@ -174,6 +218,21 @@ function openshift_sidebar($version) {
         { text: 'Step 3. Preparing the Queue Server - Rabbit MQ', link: '/'+$version+'/installation/guides/helm_chart/openshift/preparing_queue_server' },
         { text: 'Step 4. Configuration', link: '/'+$version+'/installation/guides/helm_chart/openshift/configuration' },
         { text: 'Step 5. Installation', link: '/'+$version+'/installation/guides/helm_chart/openshift/installation' },
+      ]
+    }
+  ]
+}
+
+function openshift_sidebar_2($version) {
+  return [
+     { text: 'Overview', link: '/'+$version+'/installation/guides/helm_chart/openshift/' },
+    {
+      text: 'Steps',
+      items: [
+        { text: 'Step 1. Infrastructure Overview', link: '/'+$version+'/installation/guides/helm_chart/openshift/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/'+$version+'/installation/guides/helm_chart/openshift/preparing_infrastructure' },        
+        { text: 'Step 3. Configuration', link: '/'+$version+'/installation/guides/helm_chart/openshift/configuration' },
+        { text: 'Step 4. Installation', link: '/'+$version+'/installation/guides/helm_chart/openshift/installation' },
       ]
     }
   ]
@@ -196,11 +255,7 @@ function getting_started_sidebar() {
         { text: 'Manage repositories', link: '/knowledge_center/repository_management/manage_repositories' },
         { text: 'Repositories Status', link: '/knowledge_center/repository_management/repositories_status' },
         { text: 'Manage subscriptions', link: '/knowledge_center/repository_management/manage_subscriptions' },
-<<<<<<< HEAD
-        { text: 'How to manage repositories', link: '/knowledge_center/repository_management/how_to_use_repository_management' },
-=======
         { text: 'Delete repositories', link: '/knowledge_center/repository_management/delete_repositories' },
->>>>>>> f1842022d504547f15706d105dd4b0ac121a9ee7
       ]
     },
     {
