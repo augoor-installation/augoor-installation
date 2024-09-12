@@ -71,6 +71,7 @@ function sidebars() {
     '/2.0.0/installation/guides/helm_chart/aws/': aws_sidebar_2('2.0.0'),
     '/2.0.0/installation/guides/helm_chart/azure/': azure_sidebar_2('2.0.0'),
     '/2.0.0/installation/guides/helm_chart/gcp/': gcp_sidebar_2('2.0.0'),
+    '/2.0.0/installation/guides/helm_chart/oci/': oci_sidebar_2('2.0.0'),
     '/2.0.0/installation/guides/helm_chart/openshift/': openshift_sidebar_2('2.0.0'),
     '/knowledge_center/getting_started': getting_started_sidebar(),
     '/knowledge_center/repository_management': getting_started_sidebar(),
@@ -202,6 +203,21 @@ function gcp_sidebar_2($version) {
         { text: 'Step 2. Preparing the Infrastructure', link: '/'+$version+'/installation/guides/helm_chart/gcp/preparing_infrastructure' },        
         { text: 'Step 3. Configuration', link: '/'+$version+'/installation/guides/helm_chart/gcp/configuration' },
         { text: 'Step 4. Installation', link: '/'+$version+'/installation/guides/helm_chart/gcp/installation' },
+      ]
+    }
+  ]
+}
+
+function oci_sidebar_2($version) {
+  return [
+     { text: 'Overview', link: '/'+$version+'/installation/guides/helm_chart/oci/' },
+    {
+      text: 'Steps',
+      items: [
+        { text: 'Step 1. Infrastructure Overview', link: '/'+$version+'/installation/guides/helm_chart/oci/infrastructure_overview' },
+        { text: 'Step 2. Preparing the Infrastructure', link: '/'+$version+'/installation/guides/helm_chart/oci/preparing_infrastructure' },        
+        { text: 'Step 3. Configuration', link: '/'+$version+'/installation/guides/helm_chart/oci/configuration' },
+        { text: 'Step 4. Installation', link: '/'+$version+'/installation/guides/helm_chart/oci/installation' },
       ]
     }
   ]

@@ -24,4 +24,5 @@ We provide an Augoor installation guide for these clouds:
 1. [Installation Guide for AWS](/2.0.0/installation/guides/helm_chart/aws/index.md)
 2. [Installation Guide for Azure](/2.0.0/installation/guides/helm_chart/azure/index.md)
 3. [Installation Guide for GCP](/2.0.0/installation/guides/helm_chart/gcp/index.md)
+4. [Installation Guide for OCI](/2.0.0/installation/guides/helm_chart/oci/index.md)
 <!---4. [Installation Guide for OpenShift](/1.11.0/installation/guides/helm_chart/openshift/index.md)-->
