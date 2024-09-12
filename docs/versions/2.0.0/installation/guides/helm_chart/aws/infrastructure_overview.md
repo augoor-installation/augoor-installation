@@ -24,9 +24,18 @@ Prepare an EKS Cluster for Augoor installation. The cluster must have two node g
 
 |Specification| Value |
 |---|---|
-|Nodes|2~3|
+|Nodes|1~2|
 |AWS Instance Type|t3.xlarge|
 |CPU / Memory|4 / 16 GiB|
+|Root Disk|120 GiB EBS|
+
+### Augoor service node group
+
+|Specification| Value |
+|---|---|
+|Nodes|1~3|
+|AWS Instance Type|t3.2xlarge|
+|CPU / Memory|8 / 32 GiB|
 |Root Disk|120 GiB EBS|
 
 ### GPU node group
@@ -34,9 +43,9 @@ Prepare an EKS Cluster for Augoor installation. The cluster must have two node g
 |Specification| Value |
 |---|---|
 |Nodes|Min = 0 / Max >= 1|
-|AWS Instance Type|g5.4xlarge|
-|CPU / Memory|16 / 64 GiB|
-|GPU / Memory|1 / 24 GiB|
+|AWS Instance Type|p2.8xlarge|
+|CPU / Memory|32 / 488 GiB|
+|GPU / Memory|8 / 96 GiB|
 |Root Disk|180 GiB EBS|
 
 ::: tip For GPU support, we need: 
@@ -45,7 +54,7 @@ Prepare an EKS Cluster for Augoor installation. The cluster must have two node g
 :::
 
 ## Open communication ports
-* The nodes needs to accept TCP traffic on port `8080` from ALBs.
+* The nodes needs to accept TCP traffic on ports `4000`, `8080` and `8092` from ALBs.
 * The nodes need open TCP communication between nodes.
 * The nodes need open TCP port 5432 communication with the PostgreSQL Database.
 
@@ -56,6 +65,14 @@ The nodes need internet access to download the required Augoor images from the A
 <!--@include: ../parts/mirroring_docker_images.md-->
 :::
 
+## Create a EBS storage
+Prepare a AWS EBS storage with the following specifications.
+
+|Specification| Value |
+|---|---|
+|EBS|AWS EBS|
+|Config|General Purpose/Elastic Throuput|
+|Minimun Capacity|150 GiB|
 
 ## Create a NFS storage
 Prepare a AWS EFS storage with the following specifications.
@@ -82,7 +99,7 @@ Once you configure the augoor subdomain in your DNS e.g. `augoor.mycompany.com` 
 
 
 ::: tip Check that you've completed the following steps:
-- Created an EKS Cluster with the correct specification, allowed incoming traffic to port `8080` and allowed outgoing traffic to the internet to download docker images (alternativelly allowed traffic to your internal artefact repository).
+- Created an EKS Cluster with the correct specification, allowed incoming traffic to ports `4000`, `8080` and `8092`  and allowed outgoing traffic to the internet to download docker images (alternativelly allowed traffic to your internal artefact repository).
 - Configured a subdomain and created a SSL certificate for it
 - Configured an AWS Load Balancer Controller to route traffic to port `8080` in the nodes and assigned the SSL certificate
 :::

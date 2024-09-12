@@ -149,7 +149,6 @@ We have 2 options configure the installation to pull the images:
 * [Upload to a private repository and pull from there](#upload-images-to-your-registry) 
 
 ### Create a Secret to authenticate the cluster to Augoor Container Registry
-
 1. Create the pull images secret 
 ```bash
 kubectl create secret docker-registry acr-secret \
@@ -163,9 +162,7 @@ kubectl create secret docker-registry acr-secret \
 <!--@include: ../parts/mirroring_docker_images.md-->
 
 
-
 ## Create NFS Endpoint in the network of the Cluster
-
 Full documentation on:
   * [Amazon EFS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html).
   * [Create Mount Target](https://docs.aws.amazon.com/cli/latest/reference/efs/create-mount-target.html).
@@ -295,5 +292,5 @@ aws rds create-db-instance \
 3. Create a DataBase and the Admin user for Flyway
 <!--@include: ../parts/create_db_user.md-->
 
-4. Create a DataBase and its user for Augoor application
-<!--@include: ../parts/create_db_user_sonar.md-->
+## Install database complements
+<!--@include: ../parts/create_db_complements.md-->

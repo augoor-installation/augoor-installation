@@ -24,10 +24,18 @@ Prepare an GKE Cluster for Augoor installation. The cluster must have two node g
 
 |Specification| Value |
 |---|---|
-|Nodes|2~3|
+|Nodes|1~2|
 |Instance Type|e2-standard-4|
 |CPU / Memory|4 / 16 GiB|
-|Root Disk|120 GiB EBS|
+|Root Disk|120 GiB |
+### Augoor services node group
+
+|Specification| Value |
+|---|---|
+|Nodes|1~2|
+|Instance Type|e2-standard-4|
+|CPU / Memory|4 / 16 GiB|
+|Root Disk|120 GiB |
 
 ### GPU node group
 
@@ -44,7 +52,7 @@ Prepare an GKE Cluster for Augoor installation. The cluster must have two node g
 :::
 
 ## Open communication ports
-* The nodes needs to accept TCP traffic on port `8080` from ALBs.
+* The nodes needs to accept TCP traffic on ports `4000`, `8080` and `8092` from ALBs.
 * The nodes need open TCP communication between nodes.
 * The nodes need open TCP port 5432 communication with the PostgreSQL Database.
 
@@ -54,14 +62,22 @@ The nodes need internet access to download the required Augoor images from the A
 ::: tip Alternative: Mirror Augoor Images
 <!--@include: ../parts/mirroring_docker_images.md-->
 :::
-
-
-## Create a NFS storage
-Prepare a AWS EFS storage with the following specifications.
+## Create a Persistent Disk
+Prepare a GCP Persistent Disk with the following specifications.
 
 |Specification| Value |
 |---|---|
-|NFS|Filestore instance|
+|Persisten Disk|GCP Persisten Disk|
+|Config|General Purpose/Elastic Throuput|
+|Minimun Capacity|150 GiB|
+
+
+## Create a EFS storage
+Prepare a GCP Cloud Filestorage with the following specifications.
+
+|Specification| Value |
+|---|---|
+|NFS|Cloud Filestore instance|
 |Config|---|
 |Minimun Capacity|100 GiB|
 |Network setting|0.5 GiB/s|
@@ -81,7 +97,7 @@ Once you configure the augoor subdomain in your DNS e.g. `augoor.mycompany.com` 
 
 
 ::: tip Check that you've completed the following steps:
-- Created an EKS Cluster with the correct specification, allowed incoming traffic to port `8080` and allowed outgoing traffic to the internet to download docker images (alternativelly allowed traffic to your internal artefact repository).
+- Created an GKE Cluster with the correct specification, allowed incoming traffic to ports `4000`, `8080` and `8092`  and allowed outgoing traffic to the internet to download docker images (alternativelly allowed traffic to your internal artefact repository).
 - Configured a subdomain and created a SSL certificate for it
 - Configured an AWS Load Balancer Controller to route traffic to port `8080` in the nodes and assigned the SSL certificate
 :::

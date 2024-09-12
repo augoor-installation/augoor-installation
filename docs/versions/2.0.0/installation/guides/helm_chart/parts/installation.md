@@ -1,17 +1,6 @@
 
-# Step 5. Installation
+# Step 4. Installation
 In this final step you will install Augoor and verify it is up and running.
-
-## Queue server check
-1. Check Install RabbitMQ in the corresponding configuration for the provider
-2. Make sure the following Secrets have been created in RABBIT_MQ Namespace:
-
-   - rabbitmq-ca
-   - tls-secret
-3. Make sure the following Config Maps have been created in Augoor Namespace:
-
-   - cacerts
-   - server.crt
 
 ## Installing the Chart
 Deployment is being done by Augoor Helm Chart.

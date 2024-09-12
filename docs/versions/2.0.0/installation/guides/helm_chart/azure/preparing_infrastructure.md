@@ -221,5 +221,5 @@ az postgres flexible-server db create --database-name augoor_db \
 3. Create a DataBase and the Admin user for Flyway
 <!--@include: ../parts/create_db_user.md-->
 
-4. [Only if `sonarqube.enabled = True`] Create a DataBase and its user for SonarQube application.
-<!--@include: ../parts/create_db_user_sonar.md-->
+## Install database complements
+<!--@include: ../parts/create_db_complements.md-->

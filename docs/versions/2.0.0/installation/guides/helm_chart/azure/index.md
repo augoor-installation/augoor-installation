@@ -12,6 +12,5 @@ This guide consists of 4 steps:
 
 1. [Infrastructure Overview](./infrastructure_overview)
 2. [Preparing the infrastructure](./preparing_infrastructure)
-3. [Preparing the Queue Server - Rabbit MQ](./preparing_queue_server)
-4. [Configuration](./configuration)
-5. [Installation](./installation)
+3. [Configuration](./configuration)
+4. [Installation](./installation)
