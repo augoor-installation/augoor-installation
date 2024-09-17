@@ -9,7 +9,7 @@ In this step, you will be given an overview of the configuration required to ins
 
 The necessary infrastructure to deploy Augoor includes:
 
-* A GKE Cluster.
+* A OKE Cluster.
 * AutoScaling enabled in the cluster.
 * NFS Filestore instance.
 * A PostgreSQL database instance.
@@ -17,24 +17,25 @@ The necessary infrastructure to deploy Augoor includes:
 * An assigned subdomain within your DNS.
 * An SSL certicate for the Augoor subdomain.
 
-## Create a GKE Cluster
-Prepare an GKE Cluster for Augoor installation. The cluster must have two node groups with the following specifications.
+## Create a OKE Cluster
+Prepare an OKE Cluster for Augoor installation. The cluster must have two node groups with the following specifications.
 
 ### General services node group
 
 |Specification| Value |
 |---|---|
 |Nodes|1~2|
-|Instance Type|e2-standard-4|
+|Instance Type|VM.Standard.E4.Flex|
 |CPU / Memory|4 / 16 GiB|
 |Root Disk|120 GiB |
+
 ### Augoor services node group
 
 |Specification| Value |
 |---|---|
-|Nodes|1~2|
-|Instance Type|e2-standard-4|
-|CPU / Memory|4 / 16 GiB|
+|Nodes|1~3|
+|Instance Type|VM.Standard.E4.Flex|
+|CPU / Memory|8 / 32 GiB|
 |Root Disk|120 GiB |
 
 ### GPU node group
@@ -42,13 +43,14 @@ Prepare an GKE Cluster for Augoor installation. The cluster must have two node g
 |Specification| Value |
 |---|---|
 |Nodes|Min = 0 / Max >= 1|
-|Instance Type|g2-standard-8 + 1 GPU NVIDIA TESLA V100|
-|CPU / Memory|16 / 64 GiB|
-|GPU / Memory|1 / 24 GiB|
+|Instance Type|VM.GPU3.4|
+|CPU / Memory|24 / 360 GiB|
+|GPU / Memory|4 / 64 GiB|
 |Root Disk|180 GiB EBS|
 
 ::: tip For GPU support, we need: 
-* [Install NVIDIA GPU drivers automatically or manually](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#create-gpu-pool-auto-drivers)
+* [Install NVIDIA GPU drivers](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#enabling-gpu-support-in-kubernetes)
+* [OKE Cluster Autoscaler](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingclusterautoscaler_topic-Working_with_Cluster_Autoscaler_as_Cluster_Add-on.htm#contengusingclusterautoscaler_topic-Deploying_Cluster_Autoscaler_Cluster_Add-on-step-setup-access).
 :::
 
 ## Open communication ports
@@ -62,22 +64,22 @@ The nodes need internet access to download the required Augoor images from the A
 ::: tip Alternative: Mirror Augoor Images
 <!--@include: ../parts/mirroring_docker_images.md-->
 :::
-## Create a Persistent Disk
-Prepare a GCP Persistent Disk with the following specifications.
+## Create a Block Volume
+Prepare a OCI Block Volume with the following specifications.
 
 |Specification| Value |
 |---|---|
-|Persisten Disk|GCP Persisten Disk|
+|Persisten Disk|Block Volume|
 |Config|General Purpose/Elastic Throuput|
 |Minimun Capacity|150 GiB|
 
 
 ## Create a EFS storage
-Prepare a GCP Cloud Filestorage with the following specifications.
+Prepare a OCI File Storage with the following specifications.
 
 |Specification| Value |
 |---|---|
-|NFS|Cloud Filestore instance|
+|NFS|File storege|
 |Config|---|
 |Minimun Capacity|100 GiB|
 |Network setting|0.5 GiB/s|
@@ -88,8 +90,8 @@ Prepare a PostgreSQL Azure Database Instance with the following specifications.
 
 |Specification| Value |
 |---|---|
-|Cloud SQL Instance Type|db-g1-small |
-|vCPU / Memory|Shared / 1.7 GiB|
+|PostgreSQL DB System|VM.Standard.E4.Flex|
+|vCPU / Memory| 2 / 16 GiB|
 |Root Disk|50 GiB EBS|
 
 ## Configure Augoor subdomain and SSL certificate

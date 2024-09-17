@@ -34,7 +34,7 @@ Prepare an GKE Cluster for Augoor installation. The cluster must have two node g
 |---|---|
 |Nodes|1~2|
 |Instance Type|e2-standard-4|
-|CPU / Memory|4 / 16 GiB|
+|CPU / Memory|8 / 32 GiB|
 |Root Disk|120 GiB |
 
 ### GPU node group
