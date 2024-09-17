@@ -195,6 +195,7 @@ function gcp_sidebar($version) {
 
 function gcp_sidebar_2($version) {
   return [
+
      { text: 'Overview', link: '/'+$version+'/installation/guides/helm_chart/gcp/' },
     {
       text: 'Steps',
