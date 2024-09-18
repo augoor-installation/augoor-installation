@@ -42,10 +42,21 @@ Prepare an GKE Cluster for Augoor installation. The cluster must have two node g
 |Specification| Value |
 |---|---|
 |Nodes|Min = 0 / Max >= 1|
-|Instance Type|g2-standard-8 + 1 GPU NVIDIA TESLA V100|
-|CPU / Memory|16 / 64 GiB|
-|GPU / Memory|1 / 24 GiB|
+|Instance Type|n1-standard-64 (V100)|
+|CPU / Memory|64 / 240 GiB|
+|GPU / Memory|8 / 128 GiB|
 |Root Disk|180 GiB EBS|
+
+**or**
+
+|Specification| Value |
+|---|---|
+|Nodes|Min = 0 / Max >= 1|
+|Instance Type|n1-standard-64 (T4)|
+|CPU / Memory|64 / 240 GiB|
+|GPU / Memory|4 / 64 GiB|
+|Root Disk|180 GiB EBS|
+
 
 ::: tip For GPU support, we need: 
 * [Install NVIDIA GPU drivers automatically or manually](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#create-gpu-pool-auto-drivers)

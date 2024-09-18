@@ -8,7 +8,7 @@ Augoor Installation Guide for Amazon Web Services{.guide-set-title}
 In this step you will prepare the infrastructure components required to install and deploy Augoor.
 
 ## Architecture Diagram
-![Components of AWS Installation](../../../../../../images/AWS.drawio.png)
+![Components of AWS Installation](../../../../../../images/Augoor_AWS.png)
 
 ## Create the EKS Cluster
 Full documentation on: [Creating an Amazon EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html).
