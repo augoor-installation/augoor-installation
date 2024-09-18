@@ -8,7 +8,7 @@ Augoor Installation Guide for Google Cloud Platform{.guide-set-title}
 In this step you will prepare the infrastructure components required to install and deploy Augoor.
 
 ## Architecture Diagram
-![Components of AWS Installation](../../../../../../images/GCP.drawio.png)
+![Components of AWS Installation](../../../../../../images/Augoor_GCP.png)
 
 ## Create the GKE Cluster
 Full documentation on:

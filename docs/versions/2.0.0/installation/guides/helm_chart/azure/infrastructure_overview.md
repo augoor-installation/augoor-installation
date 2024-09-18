@@ -41,9 +41,19 @@ Prepare an AKS Cluster for Augoor installation. The cluster must have two node g
 |Specification| Value |
 |---|---|
 |Nodes|Min = 0 / Max >= 1|
-|Instance Type|Standard_NC24ads_A100_v4|
-|CPU / Memory|24 / 220 GiB|
-|GPU / Memory|1 / 80 GiB|
+|Instance Type|Standard_NC24s_v3 (V100)|
+|CPU / Memory|24 / 448 GiB|
+|GPU / Memory|4 / 64 GiB|
+|Root Disk|180 GiB EBS|
+
+**or**
+
+|Specification| Value |
+|---|---|
+|Nodes|Min = 0 / Max >= 1|
+|Instance Type|Standard_NC64as_T4_v3 (T4)|
+|CPU / Memory|64 / 440 GiB|
+|GPU / Memory|4 / 64 GiB|
 |Root Disk|180 GiB EBS|
 
 ::: tip For GPU support, we need: 

@@ -43,10 +43,21 @@ Prepare an OKE Cluster for Augoor installation. The cluster must have two node g
 |Specification| Value |
 |---|---|
 |Nodes|Min = 0 / Max >= 1|
-|Instance Type|VM.GPU3.4|
-|CPU / Memory|24 / 360 GiB|
+|Instance Type|VM.GPU3.4 (V100)|
+|CPU / Memory|48 / 360 GiB|
 |GPU / Memory|4 / 64 GiB|
 |Root Disk|180 GiB EBS|
+
+**or**
+
+|Specification| Value |
+|---|---|
+|Nodes|Min = 0 / Max >= 1|
+|Instance Type|VM.GPU.A10.4|
+|CPU / Memory|64 / 2048 GiB|
+|GPU / Memory|4 / 96 GiB|
+|Root Disk|180 GiB EBS|
+
 
 ::: tip For GPU support, we need: 
 * [Install NVIDIA GPU drivers](https://github.com/NVIDIA/k8s-device-plugin?tab=readme-ov-file#enabling-gpu-support-in-kubernetes)

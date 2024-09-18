@@ -43,9 +43,19 @@ Prepare an EKS Cluster for Augoor installation. The cluster must have two node g
 |Specification| Value |
 |---|---|
 |Nodes|Min = 0 / Max >= 1|
-|AWS Instance Type|p2.8xlarge|
-|CPU / Memory|32 / 488 GiB|
-|GPU / Memory|8 / 96 GiB|
+|AWS Instance Type|p3.8xlarge (v100)|
+|CPU / Memory|32 / 244 GiB|
+|GPU / Memory|4 / 64 GiB|
+|Root Disk|180 GiB EBS|
+
+**or**
+
+|Specification| Value |
+|---|---|
+|Nodes|Min = 0 / Max >= 1|
+|AWS Instance Type|g4dn.12xlarge (T4)|
+|CPU / Memory|48 / 192 GiB|
+|GPU / Memory|4 / 64 GiB|
 |Root Disk|180 GiB EBS|
 
 ::: tip For GPU support, we need: 

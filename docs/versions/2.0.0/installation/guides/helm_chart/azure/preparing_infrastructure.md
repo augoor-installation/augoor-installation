@@ -8,7 +8,7 @@ Augoor Installation Guide for Microsoft Azure{.guide-set-title}
 In this step you will prepare the infrastructure components required to install and deploy Augoor.
 
 ## Architecture Diagram
-![Components of AWS Installation](../../../../../../images/Azure.drawio.png)
+![Components of AWS Installation](../../../../../../images/Augoor_Azure.png)
 
 ## Create the AKS Cluster
 Full documentation on:
